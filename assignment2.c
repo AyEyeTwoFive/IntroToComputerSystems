@@ -17,7 +17,7 @@ struct student {
   char id[100], name[100], email[100], course[100], grade[100];
 };
 
-struct student create_file(struct student *temp, FILE *ptr) {
+struct student* create_file(struct student *temp, FILE *ptr) {
   printf("How many records do you want to enter?\n");
   int num;
   scanf("%d", &num);
@@ -59,7 +59,7 @@ int main() {
     if (choice == 1) { // create file
       //static const struct student temp[] = create_file(ptr);
       //memcpy(data, temp, sizeof temp);
-      create_file(data, ptr);
+      data = create_file(data, ptr);
     }  
     else if (choice == 2) {
       for (int i = 0; i < sizeof(data) / sizeof(struct student); i++) {
@@ -70,6 +70,9 @@ int main() {
         printf("Grade := %s\n", data[i].grade);
         printf("*****************************\n");
       }
+    }
+    else if (choice == 6) {
+      break;
     }
   }
 }
