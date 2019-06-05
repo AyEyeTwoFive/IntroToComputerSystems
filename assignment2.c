@@ -17,38 +17,10 @@ struct student {
   char id[100], name[100], email[100], course[100], grade[100];
 };
 
-struct student* create_file(struct student *temp, FILE *ptr) {
-  printf("How many records do you want to enter?\n");
-  int num;
-  scanf("%d", &num);
-  struct student data[num];
-  for (int i = 0; i < num; i++) {
-    char token[100];
-    printf("Enter Student ID\n");
-    scanf("%s", token);
-    strcpy(data[i].id, token);
-    printf("Enter Student Name\n"); 
-    scanf("%s", token);
-    strcpy(data[i].name, token);
-    printf("Enter Email ID\n");
-    scanf("%s", token);
-    strcpy(data[i].email, token);
-    printf("Enter Course ID\n");
-    scanf("%s", token);
-    strcpy(data[i].course, token); 
-    printf("Enter Grade\n");
-    scanf("%s", token);
-    strcpy(data[i].grade, token);
-    fwrite(&data[i], sizeof(struct student), 1, ptr);
-    printf("******************\n");
-  }
-  temp = data;
-}
 
 int main() {
-  //unsigned char data[1000][9999];
   int numStudents = 0;
-  struct student *data;
+  struct student *studs;
   FILE *ptr; 
   ptr = fopen("students.bin", "wb");
   while(1) {
@@ -57,17 +29,40 @@ int main() {
     printf("Please Enter Your Choice....\n");
     scanf("%d", &choice); 
     if (choice == 1) { // create file
-      //static const struct student temp[] = create_file(ptr);
-      //memcpy(data, temp, sizeof temp);
-      data = create_file(data, ptr);
+      printf("How many records do you want to enter?\n");
+      int num;
+      scanf("%d", &num);
+      numStudents = num;
+      struct student data[num];
+      for (int i = 0; i < num; i++) {
+        char token[100];
+        printf("Enter Student ID\n");
+        scanf("%s", token);
+        strcpy(data[i].id, token);
+        printf("Enter Student Name\n");
+        scanf("%s", token);
+        strcpy(data[i].name, token);
+        printf("Enter Email ID\n");
+        scanf("%s", token);
+        strcpy(data[i].email, token);
+        printf("Enter Course ID\n");
+        scanf("%s", token);
+        strcpy(data[i].course, token);
+        printf("Enter Grade\n");
+        scanf("%s", token);
+        strcpy(data[i].grade, token);
+        fwrite(&data[i], sizeof(struct student), 1, ptr);
+        printf("******************\n"); 
+      }
+      studs = data;
     }  
     else if (choice == 2) {
-      for (int i = 0; i < sizeof(data) / sizeof(struct student); i++) {
-        printf("Student ID := %s\n", data[i].id);
-        printf("Student Name := %s\n", data[i].name);
-        printf("Email ID := %s\n", data[i].email);
-        printf("Course ID := %s\n", data[i].course);
-        printf("Grade := %s\n", data[i].grade);
+      for (int i = 0; i < numStudents; i++) {
+        printf("Student ID := %s\n", studs[i].id);
+        printf("Student Name := %s\n", studs[i].name);
+        printf("Email ID := %s\n", studs[i].email);
+        printf("Course ID := %s\n", studs[i].course);
+        printf("Grade := %s\n", studs[i].grade);
         printf("*****************************\n");
       }
     }
