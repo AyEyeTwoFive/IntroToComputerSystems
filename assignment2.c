@@ -33,7 +33,7 @@ int main() {
       int num;
       scanf("%d", &num);
       numStudents = num;
-      struct student data[num];
+      struct student *data = malloc(num * sizeof(struct student));
       for (int i = 0; i < num; i++) {
         char token[100];
         printf("Enter Student ID\n");
