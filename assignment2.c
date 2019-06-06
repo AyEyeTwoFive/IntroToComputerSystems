@@ -73,7 +73,7 @@ int main() {
       printf("Enter Student ID to search for\n");
       scanf("%s", search_id);
       for (int i=0; i < numStudents; i++) {
-        if (strcmp(search_id, studs[i].grade) == 0) {
+        if (strcmp(search_id, studs[i].id) == 0) {
           printf("Student ID := %s\n", studs[i].id);
           printf("Student Name := %s\n", studs[i].name);
           printf("Email ID := %s\n", studs[i].email);
@@ -93,7 +93,7 @@ int main() {
       printf("Enter Student ID to update\n");
       scanf("%s", search_id);
       for (int i=0; i < numStudents; i++) {
-        if (strcmp(search_id, studs[i].grade) == 0) {
+        if (strcmp(search_id, studs[i].id) == 0) {
           printf("Which field to update?\n");
           printf("1. Student ID := %s\n", studs[i].id);
           printf("2. Student Name := %s\n", studs[i].name);
@@ -141,7 +141,7 @@ int main() {
         }
       }
       if (found == 0) {
-        printf("Student ID not found\n");
+        printf("Student Name not found\n");
       }
       else {
         struct student *data = malloc((numStudents - 1) * sizeof(struct student));
