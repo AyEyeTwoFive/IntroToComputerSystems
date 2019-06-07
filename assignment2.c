@@ -127,6 +127,13 @@ int main() {
       if (found == 0) {
         printf("Student ID not found\n");
       }
+      else {
+        ptr = fopen("students.bin", "wb");
+        for (int i = 0; i < numStudents; i++) {
+          fwrite(&studs[i], sizeof(struct student), 1, ptr);
+        }
+        fclose(ptr);
+      }
     }
     else if (choice == 5) {
       char delete_name[100];
